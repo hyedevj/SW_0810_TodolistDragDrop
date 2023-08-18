@@ -1,4 +1,4 @@
-export default function TodoList({ $target, initialState, onDrop }) {
+export default function TodoList({ $target, initialState, onDrop, onRemove }) {
     const $todoList = document.createElement('div')
     $todoList.setAttribute('droppable', 'true')
     this.state = initialState
@@ -49,7 +49,11 @@ export default function TodoList({ $target, initialState, onDrop }) {
     $todoList.addEventListener('click', (e) => {
         if (e.target.tagname === 'BUTTON') {
             const $li = e.target.closest('li')
-            alert($li.dataset.id)
+            //alert($li.dataset.id)
+
+            if ($li) {
+                onRemove($li.dataset.id)
+            }
         }
     })
 }
